@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: ubuntu;
+}
+
+body {
+    background-color: #1b1e30;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 2em;
+}
+
+.green {
+    background-color: #9dff82;
+    color: black;
+}
+
+.red {
+    background-color: #ff8e8e;
+    color: black;
+}
+
+.green-border {
+    border: 1px solid #9dff82;
+    color: black;
+}
+
+.red-border {
+    border: 1px solid #ff8e8e;
+    color: black;
+}
+
+.game {
+    width: 25em;
+    margin: auto;
+}
+
+#word-bank {
+    border: 1px grey solid;
+    width: 100%;
+    min-height: 4em;
+    text-align: center;
+}
+
+#word-bank td {
+    width: 33%;
+    padding: 0 5px;
+}
+
+#word-bank td:nth-child(2) {
+    font-size: 2em;
+}
+
+#highscore {
+    margin-top: 3em;
+    text-align: center;
+    width: 100%;
+}
