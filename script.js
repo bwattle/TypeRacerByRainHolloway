@@ -69,8 +69,10 @@ window.onload = function(){
     highscoreTable = document.getElementById("highscore-table")
 
     // Create event listeners
-    startButton.addEventListener('click', startGame);
-    userIn.addEventListener('keyup', updateText);
+    // startButton.addEventListener('click', startGame);
+    startButton.onclick = startGame;
+    // userIn.addEventListener('keypress', updateText);
+    userIn.onkeyup = updateText;
 }
 
 // Functions triggered by onclick event ----------------------------------------
@@ -146,8 +148,8 @@ function timing(){
         userIn.disabled = true;
         userIn.value = "";
         clearInterval(timer);
-        updateHighscore();
-        removeChildren(wordTable)
+        setTimeout(updateHighscore, 0);
+        removeChildren(wordTable);
     }
 }
 
@@ -283,6 +285,7 @@ function updateTable(){
         highscores[i].data[0].innerHTML = highscores[i].user;
         highscores[i].data[1].innerHTML = highscores[i].score;
         highscoreTable.appendChild(highscores[i].elem);
+
     }
 }
 //------------------------------------------------------------------------------
