@@ -69,10 +69,14 @@ window.onload = function(){
     highscoreTable = document.getElementById("highscore-table")
 
     // Create event listeners
-    // startButton.addEventListener('click', startGame);
-    startButton.onclick = startGame;
-    // userIn.addEventListener('keypress', updateText);
-    userIn.onkeyup = updateText;
+    startButton.addEventListener('click', startGame);
+    // startButton.onclick = startGame;
+    userIn.addEventListener('keydown', (e) => {
+        setTimeout(() => {
+            updateText(e);
+        }, 0);
+    });
+    // userIn.onkeydown = updateText;
 }
 
 // Functions triggered by onclick event ----------------------------------------
@@ -156,15 +160,16 @@ function timing(){
 // Functions triggered by onkeypup event ---------------------------------------
 // Finds the current key being pressed and updates the word highlighting and
 // appends a new word to the word list
-function updateText(){
+function updateText(e){
     let input = userIn.value.trim().toLowerCase().split("");
-    let key = window.event.keyCode;
-    if(!(key === 32 || key === 13)){
-        updateHighlight(input);
-    }else{
+    let key = e.code;
+    if(key === "Space" || key === "Enter"){
         userIn.value = "";
         let correct = updateScore(input.join(""));
         updateWordList(correct);
+    }else{
+        console.log("test");
+        updateHighlight(input);
     }
 }
 
@@ -172,6 +177,7 @@ function updateText(){
 function updateHighlight(input){
     if(input.length <= wordList[1].string.length){
         let word = wordList[1].string.split("");
+        console.log(input);
 
         for(let i = input.length; i < word.length; i++){
             wordList[1].span[i].classList.remove("red");
