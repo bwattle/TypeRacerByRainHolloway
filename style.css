@@ -50,6 +50,7 @@ header {
     padding: 1em 2em;
     border-radius: 3px;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 #start-button:hover {
