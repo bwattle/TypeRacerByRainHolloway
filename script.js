@@ -20,7 +20,7 @@ words = [
 ];
 var nextWord = 0;
 var score = 0;
-var maxTime = 10;
+var maxTime = 60;
 var time = maxTime;
 var timer;
 
