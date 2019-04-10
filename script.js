@@ -2,12 +2,14 @@
 var userIn;
 var wordTable;
 var timer_span;
+var timer_text;
 var score_span;
 var highscoreTable;
 
 // Global variables
 var wordList = [];
 var highscores = [];
+// List of words used in the word bank
 words = [
     "time", "person", "year", "thing", "world", "life", "hand",
      "part", "child", "woman", "place", "work", "week", "point",
@@ -18,7 +20,7 @@ words = [
 ];
 var nextWord = 0;
 var score = 0;
-var maxTime = 60;
+var maxTime = 10;
 var time = maxTime;
 var timer;
 
@@ -39,6 +41,7 @@ class Word {
     }
 }
 
+// Highscore class that returns an object holding an element that is appended to the highscore table
 class Highscore {
     constructor(username, userScore){
         this.user = username;
@@ -55,16 +58,18 @@ class Highscore {
 }
 
 // Function triggered when window finishes loading -----------------------------
+// Caches the elements in the DOM into variables
 window.onload = function(){
     userIn = document.getElementById("user-in");
     wordTable = document.getElementById("word-bank");
     timer_span = document.getElementById("timer");
+    timer_text = document.getElementById("timer-text");
     score_span = document.getElementById("score");
     startButton = document.getElementById("start-button");
-    highscoreTable = document.getElementById("highscore")
+    highscoreTable = document.getElementById("highscore-table")
 
+    // Create event listeners
     startButton.addEventListener('click', startGame);
-
     userIn.addEventListener('keyup', updateText);
 }
 
@@ -80,19 +85,23 @@ function startGame(){
     setupWordBank();
 }
 
+// Resets the timer
 function resetTimer(){
     clearInterval(timer);
     time = maxTime;
+    timer_text.innerHTML = "Time: ";
     timer_span.innerHTML = time;
     timer = setInterval(timing, 1000);
 }
 
+// Removes all the child elements within a parent element
 function removeChildren(element){
     while(element.firstChild){
         element.removeChild(element.firstChild);
     }
 }
 
+// Configures the word bank
 function setupWordBank(){
 
      randomizeWords();
@@ -101,13 +110,18 @@ function setupWordBank(){
 
      let tableRow = document.createElement("tr");
      for(let i = 0; i < 3; i++){
-         wordList.push(new Word(document.createElement("td"), words[i]));
+         if(i === 0){
+             wordList.push(new Word(document.createElement("td"), ""));
+         }else{
+             wordList.push(new Word(document.createElement("td"), words[i]));
+         }
          tableRow.appendChild(wordList[i].elem);
      }
      wordTable.appendChild(tableRow);
-     nextWord = 3;
+     nextWord = 2;
 }
 
+// Randomizes the list of words by using an altered selection sort
 function randomizeWords(){
     nextWord = 0;
     for(let i = 0; i < words.length-1; i++){
@@ -118,19 +132,28 @@ function randomizeWords(){
     }
 }
 
+// The function that is executed every second while the timer function is active
 function timing(){
     time--;
     timer_span.innerHTML = time;
+    if(time <= 10){
+        timer_span.classList.add("red-text");
+    }
     if(time === 0){
+        timer_span.classList.remove("red-text");
+        timer_text.innerHTML = "";
         timer_span.innerHTML = "Time's up!";
         userIn.disabled = true;
         userIn.value = "";
         clearInterval(timer);
         updateHighscore();
+        removeChildren(wordTable)
     }
 }
 
 // Functions triggered by onkeypup event ---------------------------------------
+// Finds the current key being pressed and updates the word highlighting and
+// appends a new word to the word list
 function updateText(){
     let input = userIn.value.trim().toLowerCase().split("");
     let key = window.event.keyCode;
@@ -143,6 +166,7 @@ function updateText(){
     }
 }
 
+// Updates the highlighted letters of the current word
 function updateHighlight(input){
     if(input.length <= wordList[1].string.length){
         let word = wordList[1].string.split("");
@@ -152,16 +176,21 @@ function updateHighlight(input){
             wordList[1].span[i].classList.remove("green");
         }
 
+        let correct = true;
         for(let i = 0; i < input.length; i++){
-            if(input[i] === word[i]){
+            if(input[i] === word[i] && correct){
+                wordList[1].span[i].classList.remove("red");
                 wordList[1].span[i].classList.add("green");
             }else{
+                wordList[1].span[i].classList.remove("green");
                 wordList[1].span[i].classList.add("red");
+                correct = false;
             }
         }
     }
 }
 
+// Updates the internal score variable and the visible DOM score value
 function updateScore(input){
     if(input === wordList[1].string){
         score++;
@@ -172,6 +201,9 @@ function updateScore(input){
     }
 }
 
+// Moves each element one position to the left and highlights the word either
+// green or red depending if the user got it correct
+// Appends a new word to the end of the word bank
 function updateWordList(correct){
     for(let i = 0; i < wordList.length-1; i++){
         removeChildren(wordList[i].elem);
@@ -180,12 +212,12 @@ function updateWordList(correct){
 
     if(correct){
         wordList[0].span.forEach(x => x.classList.add("green"));
-        wordList[0].elem.classList.remove("red");
-        wordList[0].elem.classList.add("green");
+        // wordList[0].elem.classList.remove("red");
+        // wordList[0].elem.classList.add("green");
     }else{
         wordList[0].span.forEach(x => x.classList.add("red"));
-        wordList[0].elem.classList.remove("green");
-        wordList[0].elem.classList.add("red");
+        // wordList[0].elem.classList.remove("green");
+        // wordList[0].elem.classList.add("red");
     }
 
     if(nextWord < words.length-1){
@@ -199,6 +231,7 @@ function updateWordList(correct){
 }
 
 // After game is complete ------------------------------------------------------
+// Appends a new highscore to the table and checks if it fits within the top 10
 function updateHighscore(){
     let username = getUsername();
     let newHighscore = false;
@@ -219,20 +252,23 @@ function updateHighscore(){
     }
 }
 
+// Get the user's name
 function getUsername(){
-    return prompt("Enter your name:", "Guest");
+    return prompt("Enter your name:", "Guest") || "Guest";
 }
 
+// Insert the new highscore into the existing sorted highscore array
 function sortScores(){
-    let j = highscores.length-1;
-    let temp = highscores[j];
-    while(j > 0 && temp.score > highscores[j-1].score){
-        highscores[j] = highscores[j-1];
-        j--;
+    let i = highscores.length-1;
+    let temp = highscores[i];
+    while(i > 0 && temp.score > highscores[i-1].score){
+        highscores[i] = highscores[i-1];
+        i--;
     }
-    highscores[j] = temp;
+    highscores[i] = temp;
 }
 
+// Update the highscore table in the DOM so the user can see the highscore changes
 function updateTable(){
     removeChildren(highscoreTable);
     let tableRow = document.createElement("tr");
