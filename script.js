@@ -283,7 +283,6 @@ function updateTable(){
         highscores[i].data[0].innerHTML = highscores[i].user;
         highscores[i].data[1].innerHTML = highscores[i].score;
         highscoreTable.appendChild(highscores[i].elem);
-
     }
 }
 //------------------------------------------------------------------------------
