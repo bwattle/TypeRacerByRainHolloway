@@ -24,26 +24,57 @@ header {
     color: black;
 }
 
-.green-border {
-    border: 1px solid #9dff82;
-    color: black;
+.red-text {
+    color: red;
 }
 
-.red-border {
-    border: 1px solid #ff8e8e;
-    color: black;
-}
-
-.game {
-    width: 25em;
+.main-container {
+    width: 27.5em;
     margin: auto;
 }
 
+.game {
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 1em;
+    box-shadow: 0 0 10px black;
+}
+
+#start-button {
+    display: block;
+    margin: 2em auto;
+    border: none;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    padding: 1em 2em;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+#start-button:hover {
+    color: black;
+    background-color: white;
+}
+
+#user-in {
+    display: block;
+    margin: auto;
+    outline: none;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    max-width: 7.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
 #word-bank {
-    border: 1px grey solid;
     width: 100%;
     min-height: 4em;
     text-align: center;
+    margin: 1.5em 0;
 }
 
 #word-bank td {
@@ -52,11 +83,54 @@ header {
 }
 
 #word-bank td:nth-child(2) {
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
-#highscore {
-    margin-top: 3em;
+#score-table {
     text-align: center;
     width: 100%;
+    font-size: 1.5em;
+}
+
+#score-table td{
+    width: 50%;
+}
+
+.highscore {
+    margin-top: 3em;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 0.5em;
+    box-shadow: 0 0 10px black;
+}
+
+#highscore-table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#highscore-table td, th {
+    width: 50%;
+    text-align: left;
+}
+
+#highscore-table th {
+    padding-bottom: 1em;
+}
+
+#highscore-table td {
+    padding: 0.1em;
+}
+
+#highscore-table td:first-child {
+    border-radius: 3px 0 0 3px;
+}
+
+#highscore-table td:last-child {
+    border-radius: 0 3px 3px 0;
+}
+
+#highscore-table tr:nth-child(even){
+    background-color: #636363;
 }
