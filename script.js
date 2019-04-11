@@ -16,7 +16,10 @@ words = [
      "government", "company", "number", "group", "problem", "fact",
      "good", "first", "last", "long", "great", "little", "other",
      "right", "high", "different", "small", "large", "next", "early",
-     "young", "important", "public", "private", "same", "able"
+     "young", "important", "public", "private", "same", "able", "abandon",
+     "ability", "abortion", "academic", "beginning", "beside", "bible",
+     "bomb", "bike", "come", "comedy", "community", "compare", "corn",
+     "dead", "rain", "genevieve", "every", "exactly"
 ];
 var nextWord = 0;
 var score = 0;
@@ -70,13 +73,20 @@ window.onload = function(){
 
     // Create event listeners
     startButton.addEventListener('click', startGame);
-    // startButton.onclick = startGame;
+
+    // Had to change the timing of this function to 1ms to cater for firefox speed
     userIn.addEventListener('keydown', (e) => {
         setTimeout(() => {
             updateText(e);
-        }, 0);
+        }, 1);
     });
-    // userIn.onkeydown = updateText;
+
+    // Only works efficiently on chrome:
+    // userIn.addEventListener('keydown', (e) => {
+    //     setTimeout(() => {
+    //         updateText(e);
+    //     }, 0);
+    // });
 }
 
 // Functions triggered by onclick event ----------------------------------------
@@ -162,8 +172,10 @@ function timing(){
 // appends a new word to the word list
 function updateText(e){
     let input = userIn.value.trim().toLowerCase().split("");
-    let key = e.code;
-    if(key === "Space" || key === "Enter"){
+    // Microsoft edge, firefoz, and opera use keyCode method for keyboard events: returns a number
+    // Google Chrome uses 'code' and 'keyCode' method for keyboard events: returns a string
+    let key = e.keyCode;
+    if(key === 32){
         userIn.value = "";
         let correct = updateScore(input.join(""));
         updateWordList(correct);
