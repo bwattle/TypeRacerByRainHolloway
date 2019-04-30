@@ -180,7 +180,6 @@ function updateText(e){
         let correct = updateScore(input.join(""));
         updateWordList(correct);
     }else{
-        console.log("test");
         updateHighlight(input);
     }
 }
@@ -189,7 +188,6 @@ function updateText(e){
 function updateHighlight(input){
     if(input.length <= wordList[1].string.length){
         let word = wordList[1].string.split("");
-        console.log(input);
 
         for(let i = input.length; i < word.length; i++){
             wordList[1].span[i].classList.remove("red");
@@ -261,7 +259,6 @@ function updateHighscore(){
     }else{
         if(score > highscores[highscores.length-1].score){
             highscores.pop();
-            console.log("testing");
             highscores.push(new Highscore(username, score));
             newHighscore = true;
         }
