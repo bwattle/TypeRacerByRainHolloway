@@ -1,3 +1,5 @@
+'use strict';
+
 // DOM elements
 var userIn;
 var wordTable;
@@ -5,12 +7,13 @@ var timer_span;
 var timer_text;
 var score_span;
 var highscoreTable;
+var startButton;
 
 // Global variables
 var wordList = [];
 var highscores = [];
 // List of words used in the word bank
-words = [
+var words = [
     "time", "person", "year", "thing", "world", "life", "hand",
      "part", "child", "woman", "place", "work", "week", "point",
      "government", "company", "number", "group", "problem", "fact",
@@ -104,6 +107,7 @@ function startGame(){
 // Resets the timer
 function resetTimer(){
     clearInterval(timer);
+    timer_span.classList.remove("red-text");
     time = maxTime;
     timer_text.innerHTML = "Time: ";
     timer_span.innerHTML = time;
@@ -167,7 +171,7 @@ function timing(){
     }
 }
 
-// Functions triggered by onkeypup event ---------------------------------------
+// Functions triggered by onkeypress event ---------------------------------------
 // Finds the current key being pressed and updates the word highlighting and
 // appends a new word to the word list
 function updateText(e){
@@ -230,12 +234,8 @@ function updateWordList(correct){
 
     if(correct){
         wordList[0].span.forEach(x => x.classList.add("green"));
-        // wordList[0].elem.classList.remove("red");
-        // wordList[0].elem.classList.add("green");
     }else{
         wordList[0].span.forEach(x => x.classList.add("red"));
-        // wordList[0].elem.classList.remove("green");
-        // wordList[0].elem.classList.add("red");
     }
 
     if(nextWord < words.length-1){
@@ -251,21 +251,20 @@ function updateWordList(correct){
 // After game is complete ------------------------------------------------------
 // Appends a new highscore to the table and checks if it fits within the top 10
 function updateHighscore(){
-    let username = getUsername();
     let newHighscore = false;
     if(highscores.length < 10){
-        highscores.push(new Highscore(username, score));
         newHighscore = true;
-    }else{
-        if(score > highscores[highscores.length-1].score){
-            highscores.pop();
-            highscores.push(new Highscore(username, score));
-            newHighscore = true;
-        }
+    }else if(score > highscores[highscores.length-1].score){
+        highscores.pop();
+        newHighscore = true;
     }
-    if(newHighscore && highscores.length > 1){
-        sortScores();
-        updateTable();
+    if(newHighscore){
+        let username = getUsername();
+        highscores.push(new Highscore(username, score));
+        if(highscores.length > 1){
+            sortScores();
+            updateTable();
+        }
     }
 }
 
@@ -300,7 +299,6 @@ function updateTable(){
         highscores[i].data[0].innerHTML = highscores[i].user;
         highscores[i].data[1].innerHTML = highscores[i].score;
         highscoreTable.appendChild(highscores[i].elem);
-
     }
 }
 //------------------------------------------------------------------------------

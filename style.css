@@ -44,7 +44,7 @@ header {
     display: block;
     margin: 2em auto;
     border: none;
-    background-color: grey;
+    background-color: rgb(18, 190, 41);
     color: white;
     font-weight: bold;
     padding: 1em 2em;
@@ -54,8 +54,12 @@ header {
 }
 
 #start-button:hover {
-    color: black;
-    background-color: white;
+    background-color: rgba(18, 190, 41, 0.75);
+}
+
+#start-button:active {
+    background-color: rgba(18, 190, 41, 0.5);
+    outline: none;
 }
 
 #user-in {
@@ -125,13 +129,13 @@ header {
 }
 
 #highscore-table td:first-child {
-    border-radius: 3px 0 0 3px;
+    border-radius: 2px 0 0 2px;
 }
 
 #highscore-table td:last-child {
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 2px 2px 0;
 }
 
 #highscore-table tr:nth-child(even){
-    background-color: #636363;
+    background-color: rgba(18, 190, 41, 0.7);
 }
