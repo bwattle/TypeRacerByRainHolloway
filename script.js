@@ -15,14 +15,14 @@ var highscores = [];
 // List of words used in the word bank
 var words = [
     "time", "person", "year", "thing", "world", "life", "hand",
-     "part", "child", "woman", "place", "work", "week", "point",
-     "government", "company", "number", "group", "problem", "fact",
-     "good", "first", "last", "long", "great", "little", "other",
-     "right", "high", "different", "small", "large", "next", "early",
-     "young", "important", "public", "private", "same", "able", "abandon",
-     "ability", "abortion", "academic", "beginning", "beside", "bible",
-     "bomb", "bike", "come", "comedy", "community", "compare", "corn",
-     "dead", "rain", "genevieve", "every", "exactly"
+    "part", "child", "woman", "place", "work", "week", "point",
+    "government", "company", "number", "group", "problem", "fact",
+    "good", "first", "last", "long", "great", "little", "other",
+    "right", "high", "different", "small", "large", "next", "early",
+    "young", "important", "public", "private", "same", "able",
+    "ability", "academic", "beginning", "beside",
+    "bomb", "bike", "come", "comedy", "community", "compare", "corn",
+    "rain", "genevieve", "every", "exactly"
 ];
 var nextWord = 0;
 var score = 0;
