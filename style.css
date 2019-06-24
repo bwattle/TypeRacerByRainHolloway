@@ -14,20 +14,6 @@ header {
     padding: 2em;
 }
 
-.green {
-    background-color: #9dff82;
-    color: black;
-}
-
-.red {
-    background-color: #ff8e8e;
-    color: black;
-}
-
-.red-text {
-    color: red;
-}
-
 .main-container {
     width: 27.5em;
     margin: auto;
@@ -40,7 +26,60 @@ header {
     box-shadow: 0 0 10px black;
 }
 
-#start-button {
+.info {
+    color: grey;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.info:hover {
+    color: rgb(0, 255, 0);
+    text-decoration: underline;
+}
+
+.info-icon {
+    font-size: 1.1em;
+}
+
+.modal {
+    color: black;
+    z-index: 1;
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5.5em auto;
+    width: 30em;
+    min-width: 17.5em;
+    padding: 1.5em;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.8);
+    position: relative; 
+}
+  
+.modal-content p {
+    padding: 0.5em 0;
+}
+
+.modal-content .button {
+    margin: 1em 0;
+}
+
+#close-icon {
+    position: absolute;
+    right: 2em;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.button {
     display: block;
     margin: 2em auto;
     border: none;
@@ -53,11 +92,11 @@ header {
     cursor: pointer;
 }
 
-#start-button:hover {
+.button:hover {
     background-color: rgba(18, 190, 41, 0.75);
 }
 
-#start-button:active {
+.button:active {
     background-color: rgba(18, 190, 41, 0.5);
     outline: none;
 }
@@ -89,6 +128,20 @@ header {
 
 #word-bank td:nth-child(2) {
     font-size: 1.5em;
+}
+
+.green {
+    background-color: #9dff82;
+    color: black;
+}
+
+.red {
+    background-color: #ff8e8e;
+    color: black;
+}
+
+.red-text {
+    color: red;
 }
 
 #score-table {
