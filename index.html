@@ -5,6 +5,7 @@
         <title>TypeRacer</title>
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="script.js"></script>
     </head>
     <body>
@@ -13,8 +14,53 @@
         </header>
         <div class="main-container">
             <div class="game">
+                <span class="info">Instructions <span class="info-icon">&#x1f6c8;</span></span>
+                <div class="modal">
+                    <div class="modal-content">
+                        <span id="close-icon">&#x2715</span>
+                        <h2>How To Play</h2>
+                        <p>TypeRacer is a very simple, easy to play game.</p>
+                        <p>
+                            When you press the start button the game begins 
+                            and the timer starts at 60 seconds. A word appears 
+                            in the middle of the screen and you are required to 
+                            type this word as fast as possible in the provided 
+                            text box. Once you have finished typing the word, 
+                            press spacebar to continue on to the proceeding word; 
+                            as simple as normal typing. If you typed the word 
+                            correctly, the word will be highlighted green, 
+                            however if you were incorrect, the word will be 
+                            highlighted red.
+                        </p>
+                        <p>
+                            When you are typing, letters that are correct will 
+                            be highlighted green and letters that are typed 
+                            incorrectly will be highlighted red. This allows you 
+                            to identify mistakes quickly and easily.
+                        </p>
+                        <p>
+                            You do not have to type the entire word before moving 
+                            onto the next word. If you find the word too difficult 
+                            to type or you have made too many mistakes to backtrack, 
+                            simply press spacebar and keep moving on. A score is kept 
+                            track, incrementing each time a word is entered correctly. 
+                        </p>
+                        <p>
+                            The timer will turn red when you are approaching the end 
+                            of the game at 10 seconds. When the timer hits 0, the game 
+                            will end and you will be prompted for an anonymous username. 
+                            If you beat one of the current 10 high-scores 
+                            (Max of 10 high-scores), the previous high-score will be 
+                            replaced with your username and score.
+                        </p>
+                        <p>
+                            You can click the start button at any time to restart the game.
+                        </p>
+                        <button class="button" id="close-button">Close</button>
+                    </div>
+                </div>
                 <div class="start">
-                    <button type="button" id="start-button">Start</button>
+                    <button type="button" id="start-button" class="button">Start</button>
                 </div>
                 <input type="text" id="user-in">
                 <table id="word-bank"></table>
