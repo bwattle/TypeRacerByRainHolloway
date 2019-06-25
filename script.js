@@ -81,26 +81,27 @@ window.onload = function(){
     userIn.addEventListener('keydown', (e) => {
         setTimeout(() => {
             updateText(e);
-        }, 1);
+        }, 1); // 0ms only works on chrome
     });
 
-    // Only works efficiently on chrome:
-    // userIn.addEventListener('keydown', (e) => {
-    //     setTimeout(() => {
-    //         updateText(e);
-    //     }, 0);
-    // });
+    document.addEventListener("click", function(event){
+        if(event.target !== document.querySelector(".info")){
+            if(document.querySelector(".modal").style.display === "block"){
+                $(".modal").fadeOut(); // jQuery
+            }
+        }
+    });
 
     document.querySelector(".info").onclick = function(){
-        // document.querySelector(".modal").style.display = "block";
+        // document.querySelector(".modal").style.display = "block"; // JavaScript
         $(".modal").fadeIn(); // jQuery
     }
     document.querySelector("#close-icon").onclick = function(){
-        // document.querySelector(".modal").style.display = "none";
+        // document.querySelector(".modal").style.display = "none"; // JavaScript
         $(".modal").fadeOut(); // jQuery
     }
     document.querySelector("#close-button").onclick = function(){
-        // document.querySelector(".modal").style.display = "none";
+        // document.querySelector(".modal").style.display = "none"; // JavaScript
         $(".modal").fadeOut(); // jQuery
     } 
 }
