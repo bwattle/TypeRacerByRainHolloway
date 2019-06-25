@@ -37,10 +37,6 @@ header {
     text-decoration: underline;
 }
 
-.info-icon {
-    font-size: 1.1em;
-}
-
 .modal {
     color: black;
     z-index: 1;
