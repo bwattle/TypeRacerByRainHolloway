@@ -203,9 +203,8 @@ function updateText(e){
 
 // Updates the highlighted letters of the current word
 function updateHighlight(input){
+    let word = wordList[1].string.split("");
     if(input.length <= wordList[1].string.length){
-        let word = wordList[1].string.split("");
-
         for(let i = input.length; i < word.length; i++){
             wordList[1].span[i].classList.remove("red");
             wordList[1].span[i].classList.remove("green");
