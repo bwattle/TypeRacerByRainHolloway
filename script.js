@@ -222,6 +222,11 @@ function updateHighlight(input){
                 correct = false;
             }
         }
+    } else {
+        for(let i = 0; i < word.length; i++){
+            wordList[1].span[i].classList.remove("green");
+            wordList[1].span[i].classList.add("red");
+        }
     }
 }
 

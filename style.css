@@ -33,7 +33,7 @@ header {
 }
 
 .info:hover {
-    color: rgb(0, 255, 0);
+    color: white;
     text-decoration: underline;
 }
 
@@ -62,6 +62,7 @@ header {
     padding: 1.5em;
     box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.8);
     position: relative; 
+    border-radius: 2px;
 }
   
 .modal-content p {
@@ -77,6 +78,21 @@ header {
     right: 2em;
     font-size: 1.2em;
     cursor: pointer;
+}
+
+#close-icon:hover {
+    color: red;
+    font-weight: bold;
+}
+
+#close-button {
+    font-weight: normal;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+}
+
+#close-button:hover {
+    background-color: #2fa32a;
 }
 
 .button {
