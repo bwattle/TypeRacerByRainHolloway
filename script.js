@@ -85,7 +85,7 @@ window.onload = function(){
     });
 
     document.addEventListener("click", function(event){
-        if(!(event.path.includes(document.querySelector(".info")) || event.path.includes(document.querySelector(".modal-content")))){
+        if(!(event.target === document.querySelector(".info") || event.path.includes(document.querySelector(".modal-content")))){
             if(document.querySelector(".modal").style.display === "block"){
                 $(".modal").fadeOut(); // jQuery
             }
