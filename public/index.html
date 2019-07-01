@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>TypeRacer</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>TypeRacer</h1>
+        </header>
+        <div class="main-container">
+            <div class="game">
+                <span class="info">Instructions &#x1f6c8;</span>
+                <div class="modal">
+                    <div class="modal-content">
+                        <span id="close-icon">&#x2715</span>
+                        <h2>HOW TO PLAY</h2>
+                        <p>TypeRacer is a very <strong>simple</strong>, <strong>easy</strong> to play game.</p>
+                        <p>
+                            When you press the start button the game begins 
+                            and the timer starts at 60 seconds. A word appears 
+                            in the middle of the screen and you are required to 
+                            type this word as fast as possible in the provided 
+                            text box. Once you have finished typing the word, 
+                            press spacebar to continue on to the proceeding word; 
+                            as simple as normal typing. If you typed the word 
+                            correctly, the word will be <span class="green">highlighted green</span>, 
+                            however if you were incorrect, the word will be 
+                            <span class="red">highlighted red</span>.
+                        </p>
+                        <p>
+                            When you are typing, letters that are correct will 
+                            be <span class="green">highlighted green</span> and letters that are typed 
+                            incorrectly will be <span class="red">highlighted red</span>. This allows you 
+                            to identify mistakes <em>quickly</em> and <em>easily</em>.
+                        </p>
+                        <p>
+                            You do not have to type the entire word before moving 
+                            onto the next word. If you find the word too difficult 
+                            to type or you have made too many mistakes to backtrack, 
+                            simply press spacebar and keep moving on. A score is kept 
+                            track, incrementing each time a word is entered correctly. 
+                        </p>
+                        <p>
+                            The timer will turn red when you are approaching the end 
+                            of the game at <span class="red-text">10 seconds</span>. When the timer hits 0, the game 
+                            will end and you will be prompted for an anonymous username. 
+                            If you beat one of the current 10 high-scores 
+                            (Max of 10 high-scores), the previous high-score will be 
+                            replaced with your username and score.
+                        </p>
+                        <p>
+                            <strong>You can click the start button at any time to restart the game.</strong>
+                        </p>
+                        <button class="button" id="close-button">Close</button>
+                    </div>
+                </div>
+                <div class="start">
+                    <button type="button" id="start-button" class="button">Start</button>
+                </div>
+                <input type="text" id="user-in">
+                <table id="word-bank"></table>
+                <div class="score-container">
+                    <table id="score-table">
+                        <tr>
+                            <td>
+                                <span id="timer-text">Time: </span>
+                                <span id="timer">0</span>
+                            </td>
+                            <td>
+                                <span>Score: <span id="score">0</span></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="highscore">
+                <table id="highscore-table">
+                    <tr>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
