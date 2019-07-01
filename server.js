@@ -15,10 +15,7 @@ app.get("/highscore.json", function(req,res) {
     res.send(fs.readFileSync("highscore.json"));
 });
 
-app.post("/highscore.json", function(req, res){
-    let date = new Date();
-    let timeStamp = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-    console.log(`${timeStamp} > { username: "${req.body.username}", score: ${req.body.score} }`);                                                                             
+app.post("/highscore.json", function(req, res){                                                                             
     let highscore = JSON.parse(fs.readFileSync("highscore.json"));
     let newHighscore = false;
     if(highscore.length < 10){
@@ -42,6 +39,7 @@ app.post("/highscore.json", function(req, res){
         }
         highscore[i] = temp;
     }
+    console.log(`{ username: "${req.body.username}", score: ${req.body.score} } newHighscore: ${newHighscore}`);
     highscore = JSON.stringify(highscore, null, 4);
     fs.writeFileSync("highscore.json", highscore);
     res.send(highscore);
