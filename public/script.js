@@ -26,7 +26,7 @@ var words = [
 ];
 var nextWord = 0;
 var score = 0;
-var maxTime = 5;
+var maxTime = 60;
 var time = maxTime;
 var timer;
 
