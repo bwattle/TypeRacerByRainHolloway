@@ -39,7 +39,7 @@ app.post("/highscore.json", function(req, res){
         }
         highscore[i] = temp;
     }
-    console.log(`{ username: "${req.body.username}", score: ${req.body.score} } newHighscore: ${newHighscore}`);
+    console.log(`username: "${req.body.username}", score: ${req.body.score}, newHighscore: ${newHighscore}`);
     highscore = JSON.stringify(highscore, null, 4);
     fs.writeFileSync("highscore.json", highscore);
     res.send(highscore);
