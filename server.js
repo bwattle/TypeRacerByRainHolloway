@@ -23,7 +23,7 @@ app.post("/highscore.json", function(req, res){
     let newHighscore = false;
     if(highscore.length < 10){
         newHighscore = true;
-    } else if(req.body.score > highscore[highscore.length-1].score){
+    } else if(Number(req.body.score) > Number(highscore[highscore.length-1].score)){
         highscore.pop();
         newHighscore = true;
     }                                                               
@@ -36,7 +36,7 @@ app.post("/highscore.json", function(req, res){
     if(highscore.length > 1){
         let i = highscore.length-1;
         let temp = highscore[i];
-        while(i > 0 && temp.score > highscore[i-1].score){
+        while(i > 0 && Number(temp.score) > Number(highscore[i-1].score)){
             highscore[i] = highscore[i-1];
             i--;
         }
