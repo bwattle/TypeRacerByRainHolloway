@@ -44,18 +44,19 @@ app.post("/highscore.json", function(req, res){
     }
 
     let currentHighscore = false;
+    let newHighscore = false;
     if(!guest){
         for(let i = 0; i < highscore.length; i++){
             if(highscore[i].username === username){
                 currentHighscore = true;
                 if(highscore[i].score < score){
                     highscore[i].score = score;
+                    newHighscore = true;
                 }
                 break;
             }
         }
     }   
-    let newHighscore = false;
     if(!currentHighscore){
         if(highscore.length < 10){
             newHighscore = true;
