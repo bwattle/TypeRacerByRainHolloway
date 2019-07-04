@@ -256,9 +256,8 @@ function updateWordList(correct){
 }
 
 // After game is complete ------------------------------------------------------
-async function handleEndGame(){
-    let username = prompt("Enter your name:", "Guest") || "Guest";
-    postHighscore(username, score);
+function handleEndGame(){
+    postHighscore(prompt("Enter your name:", "Guest"), score);
 }
 
 function postHighscore(username, user_score){
@@ -273,15 +272,22 @@ function postHighscore(username, user_score){
     xhttp.send(`username=${username}&score=${user_score}`);
 }
 
-function getHighscoreTable(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            updateTable(JSON.parse(this.responseText));
+async function getHighscoreTable(){
+    let highscores = await getHighscoreJSON();
+    updateTable(highscores);
+}
+
+function getHighscoreJSON(){
+    return new Promise(function(resolve){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.readyState === 4 && this.status === 200){
+                resolve(JSON.parse(this.responseText));
+            }
         }
-    }
-    xhttp.open("GET", "highscore.json", true);
-    xhttp.send();
+        xhttp.open("GET", "highscore.json", true);
+        xhttp.send();
+    });
 }
 
 // Update the highscore table in the DOM so the user can see the highscore changes

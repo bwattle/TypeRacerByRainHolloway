@@ -17,18 +17,58 @@ app.get("/highscore.json", function(req,res) {
 
 app.post("/highscore.json", function(req, res){                                                                             
     let highscore = JSON.parse(fs.readFileSync("highscore.json"));
+    let username = req.body.username;
+    let score = Number(req.body.score);
+    let guest = false;
+    if(username === "Guest" || username === "null"){
+        guest = true;
+        let found = false;
+        do {
+            found = false;
+            let rand = Math.floor(Math.random()*1000 + 1);
+            if(rand < 100){
+                if(rand < 10){
+                    rand = "00" + rand;
+                } else {
+                    rand = "0" + rand;
+                }
+            }
+            username = "Guest" + rand;
+            for(let i = 0; i < highscore.length; i++){
+                if(username === highscore[i].username){
+                    found = true;
+                    break;
+                }
+            }
+        } while(found);
+    }
+
+    let currentHighscore = false;
+    if(!guest){
+        for(let i = 0; i < highscore.length; i++){
+            if(highscore[i].username === username){
+                currentHighscore = true;
+                if(highscore[i].score < score){
+                    highscore[i].score = score;
+                }
+                break;
+            }
+        }
+    }   
     let newHighscore = false;
-    if(highscore.length < 10){
-        newHighscore = true;
-    } else if(Number(req.body.score) > Number(highscore[highscore.length-1].score)){
-        highscore.pop();
-        newHighscore = true;
-    }                                                               
-    if(newHighscore){
-        highscore.push({
-            username: req.body.username,
-            score: req.body.score
-        });
+    if(!currentHighscore){
+        if(highscore.length < 10){
+            newHighscore = true;
+        } else if(score > Number(highscore[highscore.length-1].score)){
+            highscore.pop();
+            newHighscore = true;
+        }                                                               
+        if(newHighscore){
+            highscore.push({
+                "username": username,
+                "score": score
+            });
+        }
     }
     if(highscore.length > 1){
         let i = highscore.length-1;
@@ -39,7 +79,7 @@ app.post("/highscore.json", function(req, res){
         }
         highscore[i] = temp;
     }
-    console.log(`username: "${req.body.username}", score: ${req.body.score}, newHighscore: ${newHighscore}`);
+    console.log(`username: "${username}", score: ${score}, newHighscore: ${newHighscore}`);
     highscore = JSON.stringify(highscore, null, 4);
     fs.writeFileSync("highscore.json", highscore);
     res.send(highscore);
