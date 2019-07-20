@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>TypeRacer</title>
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>TypeRacer</h1>
+        </header>
+        <div class="main-container">
+            <div class="game">
+                <div class="start">
+                    <button type="button" id="start-button">Start</button>
+                </div>
+                <input type="text" id="user-in">
+                <table id="word-bank"></table>
+                <div class="score-container">
+                    <table id="score-table">
+                        <tr>
+                            <td>
+                                <span id="timer-text">Time: </span>
+                                <span id="timer">0</span>
+                            </td>
+                            <td>
+                                <span>Score: </span>
+                                <span id="score">0</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="highscore">
+                <table id="highscore-table">
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

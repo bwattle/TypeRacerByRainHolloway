@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: ubuntu;
+}
+
+body {
+    background-color: #1b1e30;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 2em;
+}
+
+.green {
+    background-color: #9dff82;
+    color: black;
+}
+
+.red {
+    background-color: #ff8e8e;
+    color: black;
+}
+
+.red-text {
+    color: red;
+}
+
+.main-container {
+    width: 27.5em;
+    margin: auto;
+}
+
+.game {
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 1em;
+    box-shadow: 0 0 10px black;
+}
+
+#start-button {
+    display: block;
+    margin: 2em auto;
+    border: none;
+    background-color: rgb(18, 190, 41);
+    color: white;
+    font-weight: bold;
+    padding: 1em 2em;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#start-button:hover {
+    color: black;
+    background-color: white;
+}
+
+#user-in {
+    display: block;
+    margin: auto;
+    outline: none;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    max-width: 7.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#word-bank {
+    width: 100%;
+    min-height: 4em;
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+#word-bank td {
+    width: 33%;
+    padding: 0 5px;
+}
+
+#word-bank td:nth-child(2) {
+    font-size: 1.5em;
+}
+
+#score-table {
+    text-align: center;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+#score-table td{
+    width: 50%;
+}

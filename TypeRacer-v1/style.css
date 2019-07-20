@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+
+.container {
+    border: 1px solid grey;
+    box-shadow: 0 0 1px grey;
+    margin: auto;
+    margin-top: 3em;
+    width: 30em;
+    text-align: center;
+}
+
+.container > h1 {
+    margin: 1em 1em 0 1em;
+}
+
+.container > h4 {
+    margin: 0em 1em 1em 1em;
+}
+
+#start {
+    display: block;
+    margin: auto;
+    padding: 0.5em 2em;
+}
+
+#user-in {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#word-bank {
+    border: 1px solid grey;
+    margin: 0 auto 2em auto;
+    width: 60%;
+    text-align: center;
+}
+
+#word-bank tr > td {
+    width: 33%;
+    padding: 1em 0;
+    margin: 0 0.1em;
+}
+
+#timer-score {
+    margin: 1em auto;
+    width: 40%;
+}
+
+#timer-score tr > td {
+    width: 50%;
+    text-align: center;
+}
